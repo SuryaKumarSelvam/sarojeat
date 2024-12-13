@@ -1,0 +1,138 @@
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: transparent;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar.menu-open {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.navbar-left .logo {
+  height: 40px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-right: 20px; 
+  cursor: pointer;
+}
+
+
+
+.menu-icon {
+  font-size: 24px;
+  color: #fff;
+}
+
+.cart-icon {
+  font-size: 24px;
+  color: #fff;
+}
+.search-icon{
+    font-size: 24px;
+    color: black;
+    /* padding-right: ; */
+}
+
+.menu-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  animation: slideDown 0.4s ease-in-out;
+}
+
+.drawer-top-menu {
+  position: absolute;
+  top: 10px;
+  right: 15px; 
+  display: flex;
+  align-items: center;
+  gap: 20px; 
+}
+
+.drawer-top-menu .user-icon,
+.drawer-top-menu .close-icon {
+  font-size: 40px; 
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding-right: 20px;
+  color: black;
+}
+
+.menu-drawer  .close-icon{
+    font-size: 50px;
+} 
+
+.menu-list {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-list li {
+  margin: 10px 0; 
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+
+@media (max-width: 768px) {
+  .navbar-right {
+    gap: 15px; 
+    padding-right: 10px;
+  }
+
+  .menu-icon,
+  .cart-icon {
+    font-size: 22px; 
+    color: #fff !important;
+  }
+
+  .drawer-top-menu {
+    top: 8px; 
+    right: 10px;
+    gap: 8px;
+  }
+
+  /* .drawer-top-menu .user-icon,
+  .drawer-top-menu .close-icon {
+    font-size: 18px; 
+  } */
+  .menu-list li {
+    font-size: 16px;
+    margin: 8px 0;
+  }
+}

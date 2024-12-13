@@ -1,0 +1,42 @@
+.footer-section{
+    background-color: black;
+    color: #fff;
+}
+
+.only-under{
+    border-bottom: 2px solid #ffff;
+}
+
+/* .only-under::placeholder {
+  color: #ff6347 !important;
+  opacity: 1; 
+} */
+
+.menu h2{
+    font-size: 18px;
+}
+
+.menu li{
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.newsletter-block h2{
+  font-size: 18px;
+}
+
+.newsletter-block p{
+    font-size: 14px;
+}
+
+.newsletter-submit,.font-demibold{
+    font-size: 18px !important;
+}
+
+.website_copyright{
+    font-size: 17px;
+}
+
+.powered_by{
+    font-size: 18px;
+}
