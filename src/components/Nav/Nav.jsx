@@ -5,13 +5,20 @@ import { IoCartOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import { IoCloseOutline } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
+import SignIn from '../UserAuth/SignIn';
 
 const Nav = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
+    const [loginFormOpen,setLoginFormOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
+    setLoginFormOpen(false)
   };
+
+  const toggleLogin = () => {
+    setLoginFormOpen(!loginFormOpen);
+  }
   return (
     <div className={`navbar ${isMenuOpen ? "menu-open" : ""}`}>
       <div className="navbar-left">
@@ -24,22 +31,35 @@ const Nav = () => {
                  <IoCartOutline className="cart-icon" />
                  <CiMenuFries className="menu-icon" onClick={toggleMenu}/>       
              </div>
-            ) : <></>
+            ) : null
         }
       {isMenuOpen && (
         <div className="menu-drawer">
           <div className="drawer-top-menu">
-            <CiSearch className='search-icon' />
-           <FaRegUser className='user-icon' />
+            {
+              !loginFormOpen ? (
+                <>
+                <CiSearch className='search-icon' />
+                <FaRegUser className='user-icon' onClick={toggleLogin} />
+                </>
+              ) : null
+            }
             <IoCloseOutline className='close-icon' onClick={toggleMenu} />
           </div>
-          <ul className="menu-list">
-            <li>Home</li>
-            <li>Shop</li>
-            <li>About</li>
-            <li>Services</li>
-            <li>Contact</li>
-          </ul>
+          {
+            !loginFormOpen ? (
+              <ul className="menu-list">
+                <li>Home</li>
+                <li>Shop</li>
+                <li>About</li>
+                <li>Services</li>
+                <li>Contact</li>
+              </ul>
+            ) : (
+               <SignIn/>
+                )
+          }
+         
         </div>
       )}
     </div>
