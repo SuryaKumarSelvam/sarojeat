@@ -19,6 +19,8 @@ const Nav = () => {
   const toggleLogin = () => {
     setLoginFormOpen(!loginFormOpen);
   }
+
+  
   return (
     <div className={`navbar ${isMenuOpen ? "menu-open" : ""}`}>
       <div className="navbar-left">
