@@ -1,6 +1,7 @@
 import React from 'react'
 import './Product.css';
 import { productsList } from '../../data';
+import { Link } from 'react-router-dom';
 
 
 const Product = () => {
@@ -31,8 +32,7 @@ const Product = () => {
             const randomClass = Math.random() > 0.5 ? 'large' : 'normal';
 
              return (
-                    <a
-                    href="#"
+                    <Link to={`/product/${product.id}/${product.name}`}
                     className={`block block-product ${randomClass}`}
                     style={{ order: 0 }}
                     key={index}
@@ -106,7 +106,7 @@ const Product = () => {
                           </span>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                       );
                     })
                   }

@@ -6,10 +6,16 @@ import { FaRegUser } from "react-icons/fa";
 import { IoCloseOutline } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import SignIn from '../UserAuth/SignIn';
+import { Link, useLocation } from 'react-router-dom';
 
 const Nav = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [loginFormOpen,setLoginFormOpen] = useState(false);
+
+    const location = useLocation();
+    const isHomePage = location.pathname === '/';
+
+    const iconColor = isHomePage ? '#fff' : 'blue';
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -24,14 +30,16 @@ const Nav = () => {
   return (
     <div className={`navbar ${isMenuOpen ? "menu-open" : ""}`}>
       <div className="navbar-left">
+       <Link to="/">
         {/* <img src="/logo.png" alt="Logo" className="logo" /> */}
-        <h1 style={{ color:"white" }}  >SAROJeats</h1>
+       <h1 style={{ color: iconColor }} >SAROJeats</h1>
+       </Link> 
       </div>
         {
             !isMenuOpen ? (
              <div className="navbar-right">
-                 <IoCartOutline className="cart-icon" />
-                 <CiMenuFries className="menu-icon" onClick={toggleMenu}/>       
+                 <IoCartOutline className="cart-icon" style={{ color: iconColor }} />
+                 <CiMenuFries className="menu-icon" onClick={toggleMenu} style={{ color: iconColor }} />       
              </div>
             ) : null
         }
@@ -51,7 +59,7 @@ const Nav = () => {
           {
             !loginFormOpen ? (
               <ul className="menu-list">
-                <li>Home</li>
+                <Link to="/" onClick={toggleMenu}><li>Home</li></Link>
                 <li>Shop</li>
                 <li>About</li>
                 <li>Services</li>
