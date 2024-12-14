@@ -5,16 +5,20 @@ import Hero from './components/Hero/Hero';
 import Product from './components/Products/Product';
 import About from './components/About/About';
 import Footer from './components/Footer/Footer';
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import Home from './pages/Home/Home';
 
 
 const App = () => {
   return (
    <>
+   <BrowserRouter>
    <Nav/>
-   <Hero/>
-   <Product/>
-   <About/>
+   <Routes>
+    <Route path='/' element={<Home/>}/>
+   </Routes>
    <Footer/>
+   </BrowserRouter>
    </>
   )
 }
