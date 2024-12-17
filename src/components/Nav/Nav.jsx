@@ -7,10 +7,18 @@ import { IoCloseOutline } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import SignIn from '../UserAuth/SignIn';
 import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Nav = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [loginFormOpen,setLoginFormOpen] = useState(false);
+
+    
+    const cartItems = useSelector((state)=>state.cartData.cartItems);
+
+    const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+
+    console.log(cartItems)
 
     const location = useLocation();
     const isHomePage = location.pathname === '/';
@@ -38,7 +46,18 @@ const Nav = () => {
         {
             !isMenuOpen ? (
              <div className="navbar-right">
-                 <IoCartOutline className="cart-icon" style={{ color: iconColor }} />
+               <div style={{ position: 'relative', display: 'inline-block' }}>
+                    <Link to="/cart">
+                      <IoCartOutline className="cart-icon" style={{ color: iconColor }} />
+                      {totalQuantity > 0 && (
+                        <span className='cart-qty'
+                        >
+                          {totalQuantity}
+                        </span>
+                      )}
+                    </Link>
+                </div>
+
                  <CiMenuFries className="menu-icon" onClick={toggleMenu} style={{ color: iconColor }} />       
              </div>
             ) : null

@@ -98,6 +98,22 @@
   color: #333;
 }
 
+.cart-qty{
+  position: absolute;
+  top:-8px;
+  right: -10px;
+  background-color: blue;
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
 
 @keyframes slideDown {
   from {

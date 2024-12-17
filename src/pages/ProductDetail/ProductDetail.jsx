@@ -8,20 +8,24 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 import './ProductDetail.css';
 import { useParams } from 'react-router-dom';
 import { productsList } from '../../data';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCart } from '../../slices/cartSlice';
 
 const ProductDetail = () => {
     const [activeTab, setActiveTab] = useState(null);
     const [quantity, setQuantity] = useState(1);
-    const [product, setProduct] = useState({}); // Initialize as an object
+    const [product, setProduct] = useState({}); 
     const { id, productName } = useParams();
 
-    // Toggle tab functionality
+    const dispatch = useDispatch();
+
+
     const toggleTab = (tab) => {
         setActiveTab(activeTab === tab ? null : tab);
     };
 
     useEffect(() => {
-        // Find the product by ID from the productsList
+        
         const data = productsList.find((item) => item.id === parseInt(id)); // Ensure `id` matches type
         if (data) {
             setProduct(data);
@@ -29,6 +33,24 @@ const ProductDetail = () => {
             console.error('Product not found!');
         }
     }, [id]);
+
+
+
+    const addTocart = ()=>{
+        console.log('add')
+        dispatch(addCart({
+            id:product.id,
+            name:product.name,
+            quantity:quantity,
+            price:product.price,
+            img:product.imgSrc
+
+        }))
+
+    }
+
+
+
 
     return (
         <div className="product-page">
@@ -91,7 +113,7 @@ const ProductDetail = () => {
                         <span>{quantity}</span>
                         <button onClick={() => setQuantity(quantity + 1)}>+</button>
                     </div>
-                    <button className="add-to-cart">Add to Cart</button>
+                    <button className="add-to-cart" onClick={addTocart}>Add to Cart</button>
                 </div>
             </div>
         </div>
