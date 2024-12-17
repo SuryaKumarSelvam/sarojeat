@@ -6,12 +6,19 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Home from './pages/Home/Home';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Cart from './pages/Cart/Cart';
+import DynamicPageTitle from './components/DynamicPageTitle/DynamicPageTitle';
+
+
+
 
 
 const App = () => {
+
+
   return (
    <>
    <BrowserRouter>
+   <DynamicPageTitle/>
    <Nav/>
    <Routes>
     <Route path='/' element={<Home/>}/>

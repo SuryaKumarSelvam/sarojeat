@@ -4,6 +4,9 @@ import Product from '../../components/Products/Product'
 import About from '../../components/About/About'
 
 const Home = () => {
+
+
+  
   return (
     <div className='home-container'>
     <Hero/>
