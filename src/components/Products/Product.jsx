@@ -69,7 +69,7 @@ const Product = () => {
                                 Regular price
                               </span>
                               <span className="price-regular font-demibold">
-                                {product.price}
+                               ₹ {product.price}
                               </span>
                               <span className="visually-hidden visually-hidden--inline">
                                 Sale price
