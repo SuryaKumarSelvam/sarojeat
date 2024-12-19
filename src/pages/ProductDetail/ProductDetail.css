@@ -208,4 +208,16 @@
   .product-price {
     font-size: 20px;
   }
+  .slider-image{
+     width:400px;
+  }
+  .swiper-button-next{
+    right: 75px;
+  }
+  .swiper-button-prev {
+    right: 125px;
+  }
+  .image-slider{
+    width: 100%;
+  }
 }

@@ -3,18 +3,22 @@ import "./Cart.css";
 import { IoCloseOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart,removeCart } from "../../slices/cartSlice";
+import { Link } from "react-router-dom";
+
 
 
 const Cart = () => {
 
-    const cartItems = useSelector((state)=>state.cartData.cartItems);
+    const cartItems = useSelector((state) => state.cartData.cartItems || []);
 
     const dispatch = useDispatch();
+   
 
 
   const handleQuantityChange = (id, delta) => {
   dispatch(addCart({ id, quantity: delta }));
-};
+
+  };
 
   const removeItem = (id) => {
     dispatch(removeCart({id}))
@@ -23,7 +27,10 @@ const Cart = () => {
   return (
     <div className="cart-container">
       <h2 className="cart-title">Your cart</h2>
-      {cartItems.map((item) => (
+      
+    { cartItems.length > 0 ? (
+      cartItems.map((item) => (
+        <div className="cart">
         <div className="cart-item" key={item.id}>
           <div className="cart-item-content">
             <img src={item.img} alt={item.name} className="cart-item-image" />
@@ -45,10 +52,23 @@ const Cart = () => {
             ✕
           </button> */}
           <IoCloseOutline className="cart-item-remove" onClick={() => removeItem(item.id)}/>
+      
         </div>
-      ))}
+        </div>
+        
+      ))
+      
+    ) :(
+        <div className="cart-empty-container">
+          <p className="cart-empty">Your Cart is empty</p>
+          <Link className="continue-shopping" to="/">
+            Continue Shopping
+          </Link>
+        </div>
 
-      <div className="cart-delivery-section">
+      )
+      }
+       { cartItems.length > 0 ? ( <div className="cart-delivery-section">
         <div className="delivery-header">Delivery</div>
         <p className="delivery-info">
           Please enter your PIN code to check if we deliver to your address
@@ -57,7 +77,14 @@ const Cart = () => {
           <input type="text" placeholder="Enter PIN code here" />
           <button>Search</button>
         </div>
-      </div>
+        <div className="checkout">
+          <Link to="/checkout" className="checkout-btn">Check Out</Link>
+        </div>
+      </div>  ) : (
+        <></>
+      )
+    }
+      
     </div>
   );
 };

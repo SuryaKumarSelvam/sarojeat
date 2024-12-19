@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <div className='home-container'>
     <Hero/>
-    <Product/>
+    <Product isHomePage={true}/>
     <About/>    
     </div>
   )

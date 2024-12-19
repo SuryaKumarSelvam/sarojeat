@@ -8,6 +8,11 @@
   position: fixed;
   width: 100%;
   z-index: 1000;
+  transition: background 0.3s ease, padding 0.3s ease;
+}
+.navbar.scrolled {
+  padding: 30px 30px;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .navbar.menu-open {
