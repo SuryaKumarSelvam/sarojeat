@@ -1,0 +1,350 @@
+
+.checkout-container {
+  display: flex;
+  height: 100%;
+  width:80% ;
+  margin: 0 auto;
+  padding-top:100px;
+}
+
+.checkout-left {
+  width: 50%;
+  padding: 20px;
+  background-color: #ffffff;
+  overflow-y: auto; 
+  height: 100vh;
+}
+
+.checkout-right {
+  width: 50%;
+  padding: 20px;
+    background-color: #f9f9f9;
+  position: sticky; 
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+
+.checkout-container h2 {
+  font-size:18px;
+  margin:10px 10px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-top:10px;
+ 
+}
+
+.half-width {
+  width: 48%;
+  margin-top:10px;
+}
+
+.third-width {
+  width: 32%;
+  
+}
+
+.checkbox,
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.radio-group label {
+  margin-bottom: 5px;
+}
+
+.billing-fields {
+  margin-top: 10px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  
+}
+
+.image-container{
+  display:flex;
+  width: 90%;
+}
+
+.qty-badge{
+   position: absolute; 
+   left: 40px;
+   bottom: 40px;
+  background-color: #6c5ce7; 
+  color: white; 
+  font-size: 10px;
+  font-weight: bold;
+  padding: 4px 4px;
+  border-radius: 50%; 
+  text-align: center; 
+  min-width: 20px; 
+  min-height: 20px; 
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.cart-item img {
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.item-details p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.item-details span {
+  font-size: 13px;
+  color: gray;
+}
+
+.item-price {
+  margin-left: auto;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+/* Discount Section */
+.discount {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.discount input {
+  flex: 1;
+  padding: 8px;
+  width: 250px !important;
+  border: 1px solid #6c5ce7;
+}
+.discount button:hover{
+  border: 1px solid #6c5ce7;
+  color: #6c5ce7;
+}
+
+.discount button
+ {
+  padding: 10px !important;
+  background-color: #6c5ce7 !important;
+  color: white !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.login{
+  font-size: 14px;
+  color: #6c5ce7;
+}
+
+.pay-now-btn {
+  width: 100%;
+  padding: 20px !important;
+  font-size: 16px !important;
+  background-color: #6c5ce7 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
+}
+
+/* Total Section */
+.total p,
+.total h3 {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.tax-info {
+  font-size: 14px;
+  color: gray;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
+}
+
+
+/* Responsive Layout */
+@media screen and (max-width: 768px) {
+  .checkout-container {
+    flex-wrap: wrap; /* Stack left and right sections vertically */
+  }
+
+  .checkout-left,
+  .checkout-right {
+    width: 100%;
+    height: auto; /* Adjust height to content */
+    position: relative;
+  }
+}
+
+/* Form Styling */
+h2 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.half-width {
+  width: 48%;
+}
+
+.third-width {
+  width: 32%;
+}
+
+@media screen and (max-width: 768px) {
+  .row {
+    flex-wrap: wrap; /* Stack inputs vertically */
+  }
+
+  .half-width,
+  .third-width {
+    width: 100%; /* Full width on mobile */
+    margin-bottom: 10px;
+  }
+}
+
+/* Billing Address Section */
+.radio-group label {
+  margin-bottom: 5px;
+}
+
+.billing-fields {
+  margin-top: 10px;
+}
+
+/* Cart Summary */
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.item-details p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.item-details span {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.item-price {
+  margin-left: auto;
+  font-weight: bold;
+}
+
+/* Discount Section */
+.discount {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.discount input {
+  flex: 1;
+  padding: 8px;
+}
+
+.discount button,
+.pay-now-btn {
+  padding: 12px;
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pay-now-btn {
+  width: 100%;
+}
+
+/* Total Section */
+.total p,
+.total h3 {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.tax-info {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
+}
+
+/* Adjust font sizes for mobile */
+@media screen and (max-width: 768px) {
+  h2 {
+    font-size: 1rem;
+  }
+
+  .input-field {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+
+  .item-details p {
+    font-size: 0.95rem;
+  }
+
+  .item-details span,
+  .tax-info {
+    font-size: 0.85rem;
+  }
+}

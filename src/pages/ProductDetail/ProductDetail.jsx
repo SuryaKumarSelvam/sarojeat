@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import './ProductDetail.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { productsList } from '../../data';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCart } from '../../slices/cartSlice';
@@ -18,6 +18,7 @@ const ProductDetail = () => {
     const { id, productName } = useParams();
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
 
     const toggleTab = (tab) => {
@@ -37,16 +38,14 @@ const ProductDetail = () => {
 
 
     const addTocart = ()=>{
-        console.log('add')
         dispatch(addCart({
             id:product.id,
             name:product.name,
             quantity:quantity,
             price:product.price,
             img:product.imgSrc
-
         }))
-
+      navigate('/cart');
     }
 
 

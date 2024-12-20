@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import {React,useState,useEffect} from 'react'
 import './Nav.css'
 import { CiMenuFries } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
@@ -12,13 +12,13 @@ import { useSelector } from 'react-redux';
 const Nav = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [loginFormOpen,setLoginFormOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
 
     
     const cartItems = useSelector((state)=>state.cartData.cartItems);
 
     const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
 
-    console.log(cartItems)
 
     const location = useLocation();
     const isHomePage = location.pathname === '/';
@@ -34,9 +34,29 @@ const Nav = () => {
     setLoginFormOpen(!loginFormOpen);
   }
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   
   return (
-    <div className={`navbar ${isMenuOpen ? "menu-open" : ""}`}>
+     <div
+      className={`navbar ${isMenuOpen ? "menu-open" : ""} ${
+        scrolled ? "scrolled" : ""
+      }`}
+    >
       <div className="navbar-left">
        <Link to="/">
         {/* <img src="/logo.png" alt="Logo" className="logo" /> */}
@@ -79,10 +99,9 @@ const Nav = () => {
             !loginFormOpen ? (
               <ul className="menu-list">
                 <Link to="/" onClick={toggleMenu}><li>Home</li></Link>
-                <li>Shop</li>
-                <li>About</li>
-                <li>Services</li>
-                <li>Contact</li>
+                <Link to='/products'onClick={toggleMenu}><li>Products</li></Link>
+                <Link to='/about' onClick={toggleMenu}><li>About</li></Link>
+                <Link to='/contact' onClick={toggleMenu}><li>Contact Us</li></Link>
               </ul>
             ) : (
                <SignIn/>
