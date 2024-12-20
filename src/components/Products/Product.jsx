@@ -9,9 +9,9 @@ const Product = ({ enableFilter = false, enablePagination = false, isHomePage = 
   const [sortOrder, setSortOrder] = useState("az");
   const [priceRange, setPriceRange] = useState([0, 100000]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8; // Items per page for pagination
+  const itemsPerPage = 8; 
 
-  // Filtered Products
+
   const filteredProducts = productsList
     .filter((product) =>
       product.name.toLowerCase().includes(filter.toLowerCase())
@@ -21,7 +21,7 @@ const Product = ({ enableFilter = false, enablePagination = false, isHomePage = 
         product.price >= priceRange[0] && product.price <= priceRange[1]
     );
 
-  // Sort Products
+  
   const sortedProducts = filteredProducts.sort((a, b) => {
     if (sortOrder === "az") return a.name.localeCompare(b.name);
     if (sortOrder === "za") return b.name.localeCompare(a.name);
@@ -30,7 +30,7 @@ const Product = ({ enableFilter = false, enablePagination = false, isHomePage = 
     return 0;
   });
 
-  // Paginated Products
+ 
   const totalPages = Math.ceil(sortedProducts.length / itemsPerPage);
   const paginatedProducts = enablePagination
     ? sortedProducts.slice(
@@ -56,10 +56,8 @@ const Product = ({ enableFilter = false, enablePagination = false, isHomePage = 
           )}
         </div>
 
-        {/* Filters Section */}
         {!isHomePage && enableFilter && (
           <div className="filter-section">
-            {/* Price Range Filter (Left) */}
             <div className="price-filter">
               <label>Price Range:</label>
               <input
