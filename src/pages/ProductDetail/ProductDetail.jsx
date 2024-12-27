@@ -27,7 +27,7 @@ const ProductDetail = () => {
 
     useEffect(() => {
         
-        const data = productsList.find((item) => item.id === parseInt(id)); // Ensure `id` matches type
+        const data = productsList.find((item) => item.id === parseInt(id)); 
         if (data) {
             setProduct(data);
         } else {
@@ -45,11 +45,8 @@ const ProductDetail = () => {
             price:product.price,
             img:product.imgSrc
         }))
-      navigate('/cart');
+        navigate('/cart');
     }
-
-
-
 
     return (
         <div className="product-page">

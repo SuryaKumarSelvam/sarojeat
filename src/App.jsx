@@ -12,6 +12,7 @@ import Product from './components/Products/Product';
 import SignIn from './components/UserAuth/SignIn';
 import Contact from './pages/Contact/Contact';
 import About from './components/About/About';
+import  Profile  from './pages/Profile/Profile';
 
 
 const ScrollToTop = () => {
@@ -36,6 +37,7 @@ const App = () => {
    <Nav/>
    <Routes>
     <Route path='/login' element={<SignIn/>}/>
+    <Route path='/profile' element={<Profile/>}/>
     <Route path='/' element={<Home/>}/>
     <Route path='/about' element={<About/>}/>
     <Route path='/product/:id/:productName' element={<ProductDetail/>}/>
