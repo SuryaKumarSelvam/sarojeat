@@ -88,7 +88,7 @@ const Nav = () => {
             {
               !loginFormOpen ? (
                 <>
-                <CiSearch className='search-icon' />
+                {/* <CiSearch className='search-icon' /> */}
                 <FaRegUser className='user-icon' onClick={toggleLogin} />
                 </>
               ) : null

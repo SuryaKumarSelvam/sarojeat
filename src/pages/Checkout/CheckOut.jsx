@@ -8,8 +8,22 @@ import { useSelector } from 'react-redux';
 const CheckOut = () => {
     const [showBillingFields, setShowBillingFields] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState("razorpay");
+    const [errors, setErrors] = useState({});
+    const [formData,setFormData] = useState(
+      {
+        firstName:"",
+        lastName:"",
+        address:"",
+        company:"",
+        etc:"",
+        city:"",
+        state:"",
+        pinCode:"",
+        phone:"",
+      }
+    );
     const cartItems = useSelector((state)=>state.cartData.cartItems);
-    console.log(cartItems);
+    
   const handlePaymentChange = (event) => {
     setPaymentMethod(event.target.value);
   };
@@ -21,6 +35,38 @@ const CheckOut = () => {
   const totalAmount = cartItems.reduce((total, item) => {
   return total + item.price * item.quantity;
     }, 0);
+
+    const handleInputChange = (event)=>{
+      const {name,value} = event.target;
+      setFormData({...formData,[name]:value});
+
+       setErrors({ ...errors, [name]: '' });
+
+    }
+
+    const validate = () => {
+    const newErrors = {};
+    if (!formData.firstName) newErrors.firstName = 'First Name is required';
+    if (!formData.lastName) newErrors.lastName = 'Last Name is required';
+    if (!formData.address) newErrors.address = 'Address is required';
+    if (!formData.city) newErrors.city = 'City is required';
+    if (!formData.pinCode) newErrors.pinCode = 'Pin Code is required';
+    if (!formData.phone) newErrors.phone = 'Phone is required';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+    const handleSubmit = ()=>{
+
+      if (validate()) {
+      console.log('Form Submitted:', formData);
+      
+    }
+
+    }
+
+
 
   return (
     <div className="checkout-container">
@@ -39,7 +85,6 @@ const CheckOut = () => {
         style={{width:'100%'}}
         >
           <MenuItem value="">
-            <em>None</em>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
@@ -47,20 +92,21 @@ const CheckOut = () => {
         </Select>
 
         <div className="row">
-          <TextField id="outlined-basic" label="First Name" variant="outlined" className="input-field half-width" />
-          <TextField id="outlined-basic" label="Last Name" variant="outlined" className="input-field half-width" />
+          <TextField id="outlined-basic" name='firstName' value={formData.firstName} onChange={handleInputChange} error={!!errors.firstName}  helperText={errors.firstName}
+           label="First Name" variant="outlined" className="input-field half-width" />
+          <TextField id="outlined-basic" name='lastName' value={formData.lastName} onChange={handleInputChange} label="Last Name" variant="outlined" className="input-field half-width" error={!!errors.lastName} helperText={errors.lastName} />
         </div>
         <div className="row">
-        <TextField id="outlined-basic" label="Company (optional)" variant="outlined" className="input-field" />
+        <TextField id="outlined-basic" name="company" label="Company (optional)" variant="outlined" className="input-field" />
         </div>
         <div className="row">
-        <TextField id="outlined-basic" label="Address" variant="outlined" className="input-field" />
+        <TextField id="outlined-basic" name="address" value={formData.address} onChange={handleInputChange} label="Address" variant="outlined" className="input-field" error={ !!errors.address} helperText={errors.address} />
         </div>
         <div className="row">
-        <TextField id="outlined-basic" label="Apartment, suite, etc. (optional)" variant="outlined" className="input-field" />
+        <TextField id="outlined-basic" name='etc' value={formData.etc} onChange={handleInputChange} label="Apartment, suite, etc. (optional)" variant="outlined" className="input-field" />
        </div>
         <div className="row">
-         <TextField id="outlined-basic" label="City" variant="outlined" className="input-field third-width" />
+         <TextField id="outlined-basic" name='city' value={formData.city} onChange={handleInputChange} label="City" variant="outlined" className="input-field third-width" error={!!errors.city} helperText={errors.city} />
           <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
@@ -76,10 +122,10 @@ const CheckOut = () => {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
-         <TextField id="outlined-basic" label="Pin Code" variant="outlined" className="input-field third-width" />
+         <TextField id="outlined-basic" name='pinCode' value={formData.pinCode} onChange={handleInputChange} label="Pin Code" variant="outlined" className="input-field third-width" error={!!errors.pinCode} helperText={errors.pincode} />
         </div>
        <div className="row">
-       <TextField id="outlined-basic" label="Phone" variant="outlined" className="input-field" />
+       <TextField id="outlined-basic" name='phone' value={formData.phone} onChange={handleInputChange} label="Phone" variant="outlined" className="input-field" error={!!errors.phone} helperText={errors.phone} />
        </div>
         <h2>Payment</h2>
          <div className="radio-group">
@@ -190,7 +236,7 @@ const CheckOut = () => {
           <hr />
           <h3>Total <span>₹ {totalAmount}.00</span></h3>
           <p className="tax-info">Including ₹46.10 in taxes</p>
-          <button className="pay-now-btn">Pay Now</button>
+          <button className="pay-now-btn" onClick={handleSubmit}>Pay Now</button>
         </div>
       </div>
     </div>
